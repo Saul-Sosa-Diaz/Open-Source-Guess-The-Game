@@ -1,6 +1,4 @@
-import React from 'react';
 import './App.styles.ts';
-let a = 2
 
 function App() {
   return (
