@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import './HomeScreen.styles.ts';
-import { Form, MainContainer } from './HomeScreen.styles.ts';
+import { Form, Image, MainContainer } from './HomeScreen.styles.ts';
 import { AutoComplete } from 'primereact/autocomplete';
 import { Clues } from './components/clues.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -13,10 +13,16 @@ const queryClient = new QueryClient()
 export const HomeScreen = () => {
     const [videoGameValue, setVideoGameValue] = useState<string>('');
     const [filteredVideogames, setFilteredVideogames] = useState<string[]>([]);
-    const [image, setImage] = useState<number>(0);
+    const [indexImage, setIndexImage] = useState<number>(1);
+    const [maxIndexClue, setMaxIndexClue] = useState<number>(1);
     const [solution, setSolution] = useState<videoGame | null>();
     const options = VIDEOGAMES.map((videoGame) => videoGame.name);
-
+    useEffect(() => {
+        if (indexImage > maxIndexClue) {
+            const newMaxIndexClue = indexImage;
+            setMaxIndexClue(newMaxIndexClue);
+        }
+    }, [indexImage]);
 
     useEffect(() => {
         const getRandomVideogame = (): videoGame => {
@@ -62,10 +68,10 @@ export const HomeScreen = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <MainContainer>
-                <h1>Guess the Game</h1>
+                <h1>Guess the Game 🎮🕹️</h1>
                 {solution && <>
-                    <img src={solution?.short_screenshots[1].image} alt="Game" />
-                    <Clues />
+                    <Image src={solution?.short_screenshots[indexImage].image} alt="Game" />
+                    <Clues onClick={setIndexImage} maxNumberClues={solution?.short_screenshots.length} actualClue={maxIndexClue}/>
                     <Form onSubmit={handleSubmit}>
                         <AutoComplete
                             value={videoGameValue}
@@ -77,7 +83,7 @@ export const HomeScreen = () => {
                         />
                         <button type="submit">Submit</button>
                     </Form>
-                    <button onClick={() => setImage(image + 1)}>Next</button>
+                    <button onClick={() => setIndexImage(indexImage + 1)}>Next</button>
                     {solution.name}
                 </>
                 }

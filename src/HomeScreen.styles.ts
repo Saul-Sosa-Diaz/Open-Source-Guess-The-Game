@@ -4,7 +4,6 @@ export const MainContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
-  justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
 })
@@ -12,8 +11,12 @@ export const MainContainer = styled('div', {
 export const Image = styled('img', {
   width: '40%',
   height: 'auto',
-  maxWidth: '100%',
-  maxHeight: '100%',
+  maxWidth: '30%',
+  maxHeight: '30%',
+  borderRadius: '1rem',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+  margin: '1rem',
+  border: '1px solid rgba(0, 0, 0, 0.1)',
 })
 
 export const Form = styled('form', {
