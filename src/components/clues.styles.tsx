@@ -1,4 +1,4 @@
-import { styled } from '@stitches/react'
+import { styled } from "@stitches/react"
 
 export const MainContainer = styled('div', {
   display: 'flex',
@@ -7,11 +7,4 @@ export const MainContainer = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
-})
-
-export const Image = styled('img', {
-  width: '40%',
-  height: 'auto',
-  maxWidth: '100%',
-  maxHeight: '100%',
 })
