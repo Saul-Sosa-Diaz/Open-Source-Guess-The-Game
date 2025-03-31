@@ -23,6 +23,11 @@ export const Button = styled(ButtonPrimeReact, {
     cursor: 'not-allowed',
   },
 
+
+  '&.currentGuessed': {
+    backgroundColor: 'rgb(5, 150, 105)',
+  },
+
   '&.skip': {
     backgroundColor: '#059669',
   },
