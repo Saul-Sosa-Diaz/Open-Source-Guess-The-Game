@@ -1,10 +1,34 @@
 import { styled } from "@stitches/react"
+import { Button as ButtonPrimeReact } from "primereact/button";
 
-export const MainContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh',
-})
+export const Button = styled(ButtonPrimeReact, {
+
+  padding: '8px 12px',
+  margin: '4px',
+  fontSize: '20px',
+  borderRadius: '6px',
+  border: 'none',
+  cursor: 'pointer',
+  color: 'white',
+  backgroundColor: 'rgb(30, 41, 59)',
+
+
+  '&.past': {
+    backgroundColor: 'red',
+    color: 'white',
+  },
+
+  '&:disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
+
+  '&.skip': {
+    backgroundColor: '#059669',
+  },
+
+  '&.current': {
+    fontWeight: '900',
+  },
+  
+});
