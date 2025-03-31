@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Open-Source-Guess-The-Game/static/css/main.cef65d74.css",
-    "main.js": "/Open-Source-Guess-The-Game/static/js/main.0ac9e7c8.js",
+    "main.js": "/Open-Source-Guess-The-Game/static/js/main.65a7c448.js",
     "index.html": "/Open-Source-Guess-The-Game/index.html",
     "main.cef65d74.css.map": "/Open-Source-Guess-The-Game/static/css/main.cef65d74.css.map",
-    "main.0ac9e7c8.js.map": "/Open-Source-Guess-The-Game/static/js/main.0ac9e7c8.js.map"
+    "main.65a7c448.js.map": "/Open-Source-Guess-The-Game/static/js/main.65a7c448.js.map"
   },
   "entrypoints": [
     "static/css/main.cef65d74.css",
-    "static/js/main.0ac9e7c8.js"
+    "static/js/main.65a7c448.js"
   ]
 }
