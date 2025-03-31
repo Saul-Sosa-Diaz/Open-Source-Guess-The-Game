@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import './HomeScreen.styles.ts';
-import { Form, Image, MainContainer } from './HomeScreen.styles.ts';
-import { AutoComplete } from 'primereact/autocomplete';
+import { Form, Image, MainContainer, Button, Title, AutoComplete } from './HomeScreen.styles.ts';
 import { Clues } from './components/clues.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { VIDEOGAMES } from './constants/videoGames.ts';
@@ -14,16 +13,21 @@ export const HomeScreen = () => {
     const [videoGameValue, setVideoGameValue] = useState<string>('');
     const [filteredVideogames, setFilteredVideogames] = useState<string[]>([]);
     const [indexImage, setIndexImage] = useState<number>(1);
-    const [maxIndexClue, setMaxIndexClue] = useState<number>(1);
+    const [currentMaxClue, setMaxIndexClue] = useState<number>(1);
+    const [maxNumberOfClues, setMaxNumberOfClues] = useState<number>(5);
     const [solution, setSolution] = useState<videoGame | null>();
+    const [ended, setEnded] = useState<boolean>(false);
     const options = VIDEOGAMES.map((videoGame) => videoGame.name);
+
+    // update the max clue
     useEffect(() => {
-        if (indexImage > maxIndexClue) {
+        if (indexImage > currentMaxClue) {
             const newMaxIndexClue = indexImage;
             setMaxIndexClue(newMaxIndexClue);
         }
-    }, [indexImage]);
+    }, [indexImage, currentMaxClue]);
 
+    // set the solution and max number of clues
     useEffect(() => {
         const getRandomVideogame = (): videoGame => {
             const randomIndex = Math.floor(Math.random() * VIDEOGAMES.length);
@@ -31,9 +35,22 @@ export const HomeScreen = () => {
         }
         const randomVideogame = getRandomVideogame();
         setSolution(randomVideogame);
+        setMaxNumberOfClues(randomVideogame.short_screenshots.length);
     }, []);
 
+    // Get if the game have been finished
+    useEffect(() => {
+        if (indexImage > maxNumberOfClues) {
+            setEnded(true);
+        }
+    }, [indexImage, maxNumberOfClues]);
 
+    // Show alert when the game is over
+    useEffect(() => {
+        if (ended) {
+            alert('Game Over');
+        }
+    }, [ended]);
 
     const search = (event: { query: string }) => {
         const includes = new Set();
@@ -57,7 +74,14 @@ export const HomeScreen = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Mensaje enviado con:", videoGameValue);
+        const inputValue = (event.currentTarget[0] as HTMLInputElement).value;
+        const lowerInputValue = inputValue.toLowerCase();
+        const isCorrect = solution?.name.toLowerCase() === lowerInputValue;
+        if (isCorrect) {
+            alert('Correct!');
+        } else {
+            setIndexImage(indexImage + 1);
+        }
     };
 
     const handleChange = (event: { value: string }) => {
@@ -68,22 +92,21 @@ export const HomeScreen = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <MainContainer>
-                <h1>Guess the Game 🎮🕹️</h1>
+                <Title> Open Guess the Game 🎮🕹️</Title>
                 {solution && <>
                     <Image src={solution?.short_screenshots[indexImage].image} alt="Game" />
-                    <Clues onClick={setIndexImage} maxNumberClues={solution?.short_screenshots.length} actualClue={maxIndexClue}/>
+                    <Clues onClick={setIndexImage} maxNumberClues={maxNumberOfClues} actualClue={currentMaxClue} />
                     <Form onSubmit={handleSubmit}>
                         <AutoComplete
+                            appendTo="self"
                             value={videoGameValue}
                             completeMethod={search}
                             suggestions={filteredVideogames}
                             onChange={handleChange}
                             placeholder="Search for a Game..."
-                            dropdown
                         />
-                        <button type="submit">Submit</button>
+                        <Button type="submit">Submit</Button>
                     </Form>
-                    <button onClick={() => setIndexImage(indexImage + 1)}>Next</button>
                     {solution.name}
                 </>
                 }
