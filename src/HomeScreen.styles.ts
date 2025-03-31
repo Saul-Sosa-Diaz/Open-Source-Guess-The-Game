@@ -2,12 +2,17 @@ import { styled } from '@stitches/react'
 import { Button as ButtonPrimeReact } from 'primereact/button'
 import { AutoComplete as AutoCompletePrimeReact } from 'primereact/autocomplete'
 
+export const Wrapper = styled('div', {
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+})
+
 export const MainContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
   alignItems: 'center',
-  minHeight: '100vh',
 })
 
 export const Title = styled('h1', {
@@ -81,3 +86,4 @@ export const AutoComplete = styled(AutoCompletePrimeReact, {
     }
   },
 })
+

@@ -1,13 +1,14 @@
 
 import { useEffect, useState } from 'react';
 import './HomeScreen.styles.ts';
-import { Form, Image, MainContainer, Button, Title, AutoComplete } from './HomeScreen.styles.ts';
+import { Form, Image, MainContainer, Button, Title, AutoComplete, Wrapper } from './HomeScreen.styles.ts';
 import { Clues } from './components/clues.tsx';
 import { Attemps } from './components/attemps.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { VIDEOGAMES } from './constants/videoGames.ts';
 import { videoGame } from './types/videoGame.ts';
 import { EndStatus } from './components/endStatus.tsx';
+import { Footer } from './components/footer.tsx';
 
 const queryClient = new QueryClient()
 
@@ -122,29 +123,32 @@ export const HomeScreen = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <MainContainer>
-                <Title> Open Source Guess the Game 🎮🕹️</Title>
-                {solution && <>
-                    <Image src={solution?.short_screenshots[indexImage].image} alt="Game" />
-                    <Clues disabled={ended} guessed={guessed} increaseIndex={handleIncreaseIndex} changeImage={setIndexImage} maxNumberClues={maxNumberOfClues} actualClue={currentMaxIndexClue} />
-                    {ended && <EndStatus guessed={guessed} solutionName={solution.name} handlePlayAgain={handlePlayAgain} />}
-                    {!ended && <Form onSubmit={handleSubmit}>
-                        <AutoComplete
-                            disabled={ended}
-                            appendTo="self"
-                            value={videoGameValue}
-                            completeMethod={search}
-                            suggestions={filteredVideogames}
-                            onChange={handleChange}
-                            placeholder="Search for a Game..."
-                        />
-                        <Attemps attemps={attempts} guessed={guessed} />
-                        <Button disabled={ended} type="submit">Submit</Button>
-                    </Form>}
-                    
-                </>
-                }
-            </MainContainer>
+            <Wrapper>
+                <MainContainer>
+                    <Title> Open Source Guess the Game 🎮🕹️</Title>
+                    {solution && <>
+                        <Image src={solution?.short_screenshots[indexImage].image} alt="Game" />
+                        <Clues disabled={ended} guessed={guessed} increaseIndex={handleIncreaseIndex} changeImage={setIndexImage} maxNumberClues={maxNumberOfClues} actualClue={currentMaxIndexClue} />
+                        {ended && <EndStatus guessed={guessed} solutionName={solution.name} handlePlayAgain={handlePlayAgain} />}
+                        {!ended && <Form onSubmit={handleSubmit}>
+                            <AutoComplete
+                                disabled={ended}
+                                appendTo="self"
+                                value={videoGameValue}
+                                completeMethod={search}
+                                suggestions={filteredVideogames}
+                                onChange={handleChange}
+                                placeholder="Search for a Game..."
+                            />
+                            <Attemps attemps={attempts} guessed={guessed} />
+                            <Button disabled={ended} type="submit">Submit</Button>
+                        </Form>}
+
+                    </>
+                    }
+                </MainContainer>
+                <Footer />
+            </Wrapper>
         </QueryClientProvider>
     );
 }
