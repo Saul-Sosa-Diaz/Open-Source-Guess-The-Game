@@ -1,7 +1,7 @@
 # Open Source Guess the Game
 
 **Open Source Guess the Game** is an open-source puzzle game inspired by [guess the.game](https://guessthe.game/) and built using video game data from [RAWG.io](https://rawg.io/).
-
+You can go to the page of this repository to play the game online: [Open Source Guess The Game](https://saul-sosa-diaz.github.io/Open-Source-Guess-The-Game/).
 ## Table of Contents
 
 - [Open Source Guess the Game](#open-source-guess-the-game)
@@ -38,7 +38,7 @@
 
 # Usage
 
-You can go to the page of this repository to play the game online: [guess-the-game]().
+You can go to the page of this repository to play the game online: [Open Source Guess The Game](https://saul-sosa-diaz.github.io/Open-Source-Guess-The-Game/).
 You can guess the game by following these simple steps:
 
 - **Start the Game**
