@@ -1,6 +1,7 @@
 {
   "name": "open-guess-the-game",
   "version": "0.1.0",
+  "homepage": "https://Saul-Sosa-Diaz.github.io/Open-Source-Guess-The-Game",
   "private": true,
   "dependencies": {
     "@stitches/react": "^1.2.8",
@@ -27,6 +28,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-next": "^15.2.3"
+    "eslint-config-next": "^15.2.3",
+    "gh-pages": "^6.3.0"
   }
 }
