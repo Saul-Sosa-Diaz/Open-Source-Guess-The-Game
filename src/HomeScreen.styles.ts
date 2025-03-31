@@ -1,7 +1,6 @@
 import { styled } from '@stitches/react'
 import { Button as ButtonPrimeReact } from 'primereact/button'
 import { AutoComplete as AutoCompletePrimeReact } from 'primereact/autocomplete'
-import { formatDiagnosticsWithColorAndContext } from 'typescript'
 
 export const MainContainer = styled('div', {
   display: 'flex',
@@ -24,7 +23,7 @@ export const Image = styled('img', {
   borderRadius: '0.5rem',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
   margin: '1rem',
-  border: '2px solid rgba(0, 0, 0, 1)',
+  border: '2px solid rgba(0, 0, 0, 0.6)',
 })
 
 export const Form = styled('form', {
@@ -58,6 +57,8 @@ export const AutoComplete = styled(AutoCompletePrimeReact, {
   },
   '& .p-autocomplete-input': {
     width: '100%',
+    fontSize: '20px',
+    paddingLeft: '0.5rem',
     height: '2.5rem',
     borderRadius: '0.5rem',
     border: '1px solid #ccc',
