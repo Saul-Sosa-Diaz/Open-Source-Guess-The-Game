@@ -21,7 +21,7 @@ You can go to the page of this repository to play the game online: [Open Source 
 
 1. **Clone the Repository**
    ```bash
-   git clonehttps://github.com/Saul-Sosa-Diaz/Open-Source-Guess-The-Game.git
+   git clone https://github.com/Saul-Sosa-Diaz/Open-Source-Guess-The-Game.git
     cd guess-the-game
    ```
 2. **Install Dependencies**
